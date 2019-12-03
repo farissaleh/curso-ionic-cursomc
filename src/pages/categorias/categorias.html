@@ -1,0 +1,24 @@
+
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle> <!--menuToggle esconde menu quando necessário-->
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Categorias</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list>
+
+        <button ion-item *ngFor="let item of items" > <!-- Todo o item se torna 'clicável'// For -->
+            <ion-thumbnail item-start> <!-- Thmubnail versão reduzidas da imagem-->
+              <img src="{{bucketUrl}}/cat{{item.id}}.jpg"> <!-- Chama as imagens da API de acordo com ID-->
+            </ion-thumbnail>
+            <ion-label>{{item.nome}}</ion-label> <!-- Interpolação , Iterpolar (Misturar) contéudo do controlador no html-->
+          </button>
+        </ion-list>
+</ion-content>
+
+
+
