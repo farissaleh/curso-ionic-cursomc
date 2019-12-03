@@ -6,10 +6,22 @@
 -->
 <ion-header>
   <ion-navbar>
+    <button ion-button menuToggle>
+      <!--menuToggle esconde menu quando necessário-->
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>Profile</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-{{email}}
+  <ion-avatar>
+    <!-- imagem em avatar -->
+    <img class="circle" [src]="cliente?.imageUrl || 'assets/imgs/avatar-blank.png'">
+  </ion-avatar>
+    <!-- [] Bind de dados-->
+    <!-- Possuir uma lógica (if) dentro do src -->
+    <!-- ? Operador de navegação segura, verfica a variável e ai sim ela tem seu valor renderizado-->
+    <h2 text-center>{{cliente?.nome}}</h2><!--Tem q ter o ? pq verifica o objeto -->
+    <p text-center>{{cliente?.email}}</p><!-- na hora q a tela 'nasce' este objeo etá vazio -->
 </ion-content>
