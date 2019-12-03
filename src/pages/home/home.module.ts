@@ -1,4 +1,3 @@
-import { AuthService } from './../../services/auth.service';
 import { IonicPageModule } from 'ionic-angular/module';
 import { NgModule } from '@angular/core';
 import { HomePage } from './home';

@@ -19,7 +19,9 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: 'HomePage' }
+      // { title: 'Home', component: 'HomePage' }
+      { title: 'Profile', component: 'ProfilePage' },//Ionic page permite acesso pelo nome da classe
+      { title: 'Categorias', component: 'CategoriasPage' }
     ];
 
   }

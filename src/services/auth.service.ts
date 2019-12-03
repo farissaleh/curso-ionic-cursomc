@@ -4,10 +4,16 @@ import { API_CONFIG } from './../config/api.config';
 import { HttpClient } from '@angular/common/http';
 import { CredenciaisDTO } from './../models/credencias.dto';
 import { Injectable } from '@angular/core';
+import { JwtHelper } from 'angular2-jwt';
 
 @Injectable()
 export class AuthService {
 
+  jwtHelper : JwtHelper = new JwtHelper();
+
+  //jwtHelper : JwtHelper = new JwtHelper() novo
+  //jwtHelper : JwtHelper = { params } novo preenchido
+   //jwtHelper : JwtHelper ; vazio
 
   constructor(
     public http: HttpClient,
@@ -29,7 +35,7 @@ export class AuthService {
     let token_ = authorizationValue.substring(7);//Remover Bearer do token
     let user: LocalUser = {
       token: token_,
-      email: ""
+      email: this.jwtHelper.decodeToken(token_).sub//sub pega o email do token
     }
     this.storage.setLocalUser(user);//Serviço reponsável por armazenar localUser no storage
   }
