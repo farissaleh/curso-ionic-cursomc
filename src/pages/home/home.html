@@ -1,18 +1,22 @@
-<ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
-</ion-header>
+
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+  <h3>Sistema de Pedidos</h3>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+  <img src="assets/imgs/tela-inicial.png" alt="logo">
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+  <form>
+    <ion-item>
+      <ion-label stacked>Email</ion-label> <!-- stacked deixa o Label em linha semparada do input-->
+      <ion-input [(ngModel)]="credenciais.email" name="email" type="text"></ion-input> <!--[(ngModel)] bind de atributo de elemente html e de evento -->
+    </ion-item> <!--NgModel to way data Bind-->
+    <ion-item>
+      <ion-label stacked>Senha</ion-label>
+      <ion-input [(ngModel)]="credenciais.senha" name="senha" type="password"></ion-input>
+    </ion-item>
+    <button ion-button block (click)="login()">Entrar</button> <!-- Bind de evento definido por parenteses-->
+  </form>
+
+  <button ion-button block outline>Regsitrar</button> <!--outline botão somente com contorno-->
+
 </ion-content>
