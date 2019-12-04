@@ -2,6 +2,7 @@ import { StorageService } from './../services/storage.service';
 import { Observable } from 'rxjs/Rx';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { Injectable } from '@angular/core';
+import { AlertController } from 'ionic-angular';
 
 // Classe para interceptar requisições na API
 // Discussão: Ele deve redirecionar, mas quem cuida de navegação é a controller, ela redirecionando
@@ -12,7 +13,9 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {//implemente classe httpInterceptor
 
-  constructor(public storage : StorageService){
+  constructor(
+    public storage: StorageService,
+    public alertCtrl: AlertController) {
 
   }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {//Diz oq deverá ser feito
@@ -36,6 +39,14 @@ export class ErrorInterceptor implements HttpInterceptor {//implemente classe ht
           case 403:
             this.handle403();
             break;
+          case 401:
+            this.handle401();
+            break;
+          case 404:
+            this.handle404();
+            break;
+          default:
+            this.handleDefaultError(errorObj);
         }
 
         return Observable.throw(errorObj);//Se erro porpaga o erro, não lida com ele 100%
@@ -44,6 +55,48 @@ export class ErrorInterceptor implements HttpInterceptor {//implemente classe ht
 
   handle403() {//Forbidden, limpa o Local User pq ele está inválido?
     this.storage.setLocalUser(null);
+  }
+
+  handle401() {//Forbidden
+    let alert = this.alertCtrl.create({//definir propriedade do alert
+      title: 'Error 401: Falha de autenticação',
+      message: 'Email ou senha incorretos',
+      enableBackdropDismiss: false,//Não permite sair do alert clicando fora do alert
+      buttons: [//lista de butões
+        {
+          text: 'Ok'
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  handle404() {//Not Found
+    let alert = this.alertCtrl.create({//definir propriedade do alert
+      title: 'Error 404: Recurso não encontrado',
+      message: 'Não foi possível encontrar o recurso solicitado',
+      enableBackdropDismiss: false,//Não permite sair do alert clicando fora do alert
+      buttons: [//lista de butões
+        {
+          text: 'Ok'
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  handleDefaultError(errorObj) {//Forbidden
+    let alert = this.alertCtrl.create({//definir propriedade do alert
+      title: `Erro ${errorObj.status}: ${errorObj.error}`,
+      message: errorObj.message,
+      enableBackdropDismiss: false,//Não permite sair do alert clicando fora do alert
+      buttons: [//lista de butões
+        {
+          text: 'Ok'
+        }
+      ]
+    });
+    alert.present();
   }
 }
 
