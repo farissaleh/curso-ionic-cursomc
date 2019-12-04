@@ -35,7 +35,14 @@ export class ProfilePage {
           this.cliente = response;
           this.getImageIfExixts();
         },
-        error => { });
+        error => { //Forbidden falha de autenticação (403)
+          if (error.status == 403){
+            this.navCtrl.setRoot('HomePage');//O erro é tratado no interceptor mas a página é redirecionada na controller
+          }
+        });
+    }else {//Não acha o localUser, página precisa de autenticação, então ele é redirecionado
+      //Controller é responsável pelo redirecionamento (navegação)
+      this.navCtrl.setRoot('HomePage');
     }
   }
 
