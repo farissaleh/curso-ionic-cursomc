@@ -13,7 +13,7 @@ export class MyApp {
 
   rootPage: string = 'HomePage';//Diz qual é a página inicial da aplicação
 
-  pages: Array<{ title: string, component: string }>;
+  pages: Array<{ title: string, component: string, iconName: string }>;
 
   constructor(
     public platform: Platform,
@@ -25,9 +25,9 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       // { title: 'Home', component: 'HomePage' }
-      { title: 'Profile', component: 'ProfilePage' },//Ionic page permite acesso pelo nome da classe
-      { title: 'Categorias', component: 'CategoriasPage' },
-      { title: 'Logout', component: 'HomePage' }//''
+      { title: 'Profile', component: 'ProfilePage',iconName:'' },//Ionic page permite acesso pelo nome da classe
+      { title: 'Categorias', component: 'CategoriasPage',iconName:'' },
+      { title: 'Logout', component: 'HomePage', iconName:'exit'}//''
     ];
 
   }
@@ -41,7 +41,7 @@ export class MyApp {
     });
   }
 
-  openPage(page: { title: string, component: string }) {
+  openPage(page: { title: string, component: string , iconName: string}) {
 
     if (page.title == 'Logout') {
       this.authService.logout();

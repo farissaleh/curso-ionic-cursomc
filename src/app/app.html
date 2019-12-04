@@ -9,6 +9,7 @@
     <ion-list>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         {{p.title}}
+         <ion-icon [name]="p.iconName" *ngIf="p.iconName != ''"></ion-icon><!-- bind de variável -->
         <!-- <ion-icon name="exit" *ngIf="p.title == 'Logout'"></ion-icon> -->
       </button>
     </ion-list>
