@@ -43,4 +43,17 @@ export class AuthService {
   logout() {//remove usuario do LocalStorage
     this.storage.setLocalUser(null);
   }
+
+  refreshToken() {//Atualizar o Token
+    //Interceptor já coloca o header c  token
+    return this.http.post(
+      `${API_CONFIG.baseUrl}/auth/refresh_token`,
+      {},
+      {//infos adicionais
+        observe: 'response', // Pegar o Header da resposta, rentão identifica q o retornor é um response
+        responseType: 'text' //Endpoint retorna vazio no corpo, text pra n tentar parsear para json
+      })
+  }
+
 }
+
