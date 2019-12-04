@@ -1,6 +1,6 @@
 import { StorageService } from './../storage.service';
 import { API_CONFIG } from './../../config/api.config';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { ClienteDTO } from '../../models/cliente.dto';
@@ -15,12 +15,15 @@ export class ClienteService {
   }
 
   findByEmail(email : string): Observable<ClienteDTO> {
-    let token = this.storage.getLocalUser().token;
-    let header = new HttpHeaders({'Authorization':'Bearer '+ token});//enviar token na req
+    // let token = this.storage.getLocalUser().token;
+    // let header = new HttpHeaders({'Authorization':'Bearer '+ token});//enviar token na req
+
+    // return this.http.get<ClienteDTO>(
+    //   `${API_CONFIG.baseUrl}/clientes/email?value=${email}`,
+    //   {'headers': header});
 
     return this.http.get<ClienteDTO>(
-      `${API_CONFIG.baseUrl}/clientes/email?value=${email}`,
-      {'headers': header});
+      `${API_CONFIG.baseUrl}/clientes/email?value=${email}`);
   }
 
   getImagemFormBucket(id : string): Observable<any> {

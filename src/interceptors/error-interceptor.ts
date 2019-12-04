@@ -12,7 +12,6 @@ import { Injectable } from '@angular/core';
 export class ErrorInterceptor implements HttpInterceptor {//implemente classe httpInterceptor
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {//Diz oq deverá ser feito
-    console.log('Interceptor');
     return next.handle(req)//Continua a requisição
     .catch((error, caught)=>{
 
@@ -25,7 +24,7 @@ export class ErrorInterceptor implements HttpInterceptor {//implemente classe ht
         errorObj = JSON.parse(errorObj);
       }
 
-      console.log('Ero detectado pelo interceptor');
+      console.log('Ero detectado pelo interceptor:');
       console.log(errorObj);
 
       return Observable.throw(errorObj);//Se erro porpaga o erro, não lida com ele 100%
