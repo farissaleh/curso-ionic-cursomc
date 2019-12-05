@@ -40,7 +40,7 @@ export class HomePage {
       this.auth.successfulLogin(response.headers.get('Authorization'));
       this.navCtrl.setRoot('CategoriasPage')
     },
-    error => {});
+      error => { });
   }
 
   login() {//sem nda entende-se q o método é público
@@ -52,6 +52,10 @@ export class HomePage {
         // this.navCtrl.push('CategoriasPage') // Empilha uma página em cima da outra, fila de páginas
         this.navCtrl.setRoot('CategoriasPage') // não empilha
       }, error => { });
+  }
+
+  signup() {
+    this.navCtrl.push('SignupPage');
   }
 
 }
