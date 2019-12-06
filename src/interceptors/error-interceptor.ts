@@ -1,3 +1,4 @@
+import { FieldMessage } from './../models/fieldmessage';
 import { StorageService } from './../services/storage.service';
 import { Observable } from 'rxjs/Rx';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HTTP_INTERCEPTORS } from "@angular/common/http";
@@ -45,6 +46,9 @@ export class ErrorInterceptor implements HttpInterceptor {//implemente classe ht
           case 404:
             this.handle404();
             break;
+          case 422:
+            this.handle422(errorObj);
+            break;
           default:
             this.handleDefaultError(errorObj);
         }
@@ -85,6 +89,20 @@ export class ErrorInterceptor implements HttpInterceptor {//implemente classe ht
     alert.present();
   }
 
+  handle422(errorObj) {//Entity n processada, error padrão da API
+    let alert = this.alertCtrl.create({
+      title: 'Erro de validação',
+      message: this.listApiErrors(errorObj.errors),
+      enableBackdropDismiss: false,
+      buttons: [
+        {
+          text: 'ok'
+        }
+      ]
+    });
+    alert.present();
+  }
+
   handleDefaultError(errorObj) {//Forbidden
     let alert = this.alertCtrl.create({//definir propriedade do alert
       title: `Erro ${errorObj.status}: ${errorObj.error}`,
@@ -97,6 +115,15 @@ export class ErrorInterceptor implements HttpInterceptor {//implemente classe ht
       ]
     });
     alert.present();
+  }
+
+  //Concatena a lista de erro que vem do back
+  listApiErrors(errors: FieldMessage[]){
+    let texto: string = '';
+    errors.forEach(error => {
+      texto= texto + '<p><strong>'+ error.fieldName+ '</strong>: '+ error.message+'</p>';
+    });
+    return texto;
   }
 }
 
