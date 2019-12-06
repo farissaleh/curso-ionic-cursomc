@@ -33,7 +33,7 @@ export class SignupPage {
       nome: ['Faris',[Validators.required, Validators.minLength(5), Validators.maxLength(120)]],//Atributos: Valor + Validator
       email: ['faris@mail.com',[Validators.required,Validators.email]],
       tipo: ['1',[Validators.required]],
-      cpfOuCnpj: ['0659789307',[Validators.required, Validators.minLength(11),Validators.maxLength(14)]],
+      cpfOuCnpj: ['06597893107',[Validators.required, Validators.minLength(11),Validators.maxLength(14)]],
       senha: ['123',[Validators.required]],
       logradouro: ['Rua Via',[Validators.required]],
       numero: ['25',[Validators.required]],
