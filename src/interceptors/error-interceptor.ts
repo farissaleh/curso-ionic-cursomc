@@ -117,6 +117,8 @@ export class ErrorInterceptor implements HttpInterceptor {//implemente classe ht
     alert.present();
   }
 
+
+
   //Concatena a lista de erro que vem do back
   listApiErrors(errors: FieldMessage[]){
     let texto: string = '';
