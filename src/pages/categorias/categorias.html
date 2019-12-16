@@ -11,7 +11,7 @@
 <ion-content padding>
     <ion-list>
 
-        <button ion-item *ngFor="let item of items" > <!-- Todo o item se torna 'clicável'// For -->
+        <button ion-item *ngFor="let item of items" (click)="showProdutos()"> <!-- Todo o item se torna 'clicável'// For -->
             <ion-thumbnail item-start> <!-- Thmubnail versão reduzidas da imagem-->
               <img src="{{bucketUrl}}/cat{{item.id}}.jpg"> <!-- Chama as imagens da API de acordo com ID-->
             </ion-thumbnail>

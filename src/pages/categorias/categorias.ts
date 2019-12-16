@@ -31,4 +31,8 @@ export class CategoriasPage {
     },error => {}); //Pode decidir oq fazer em caso de erro pq o interceptor propaga o erro
   }
 
+  showProdutos(){
+    this.navCtrl.push('ProdutosPage');
+  }
+
 }
