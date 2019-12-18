@@ -1,0 +1,26 @@
+<!--
+  Generated template for the ProdutosPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Produtos</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <button ion-item *ngFor="let p of produtos" ><!-- Butão q é um ion ITEM ? -->
+      <ion-thumbnail item-start>
+        <img [src]="p.imageUrl || 'assets/imgs/no-image.png'">
+      </ion-thumbnail>
+      <h2>{{p.nome}}</h2>
+      <p>{{p.preco | currency}}</p> <!-- pipe currency para formatar valor em moeda -->
+    </button>
+  </ion-list>
+</ion-content>

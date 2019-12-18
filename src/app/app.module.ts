@@ -1,4 +1,3 @@
-import { ProdutoService } from './../services/domain/produto.service';
 import { AuthInterceptorProvider } from './../interceptors/auth-interceptor';
 import { ClienteService } from './../services/domain/cliente.service';
 import { StorageService } from './../services/storage.service';
@@ -14,6 +13,8 @@ import { MyApp } from './app.component';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ErrorInterceptorProvider } from '../interceptors/error-interceptor';
+import { ProdutoService } from '../services/domain/produto.service';
+import { BucketService } from '../services/bucket.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ErrorInterceptorProvider } from '../interceptors/error-interceptor';
     AuthService,
     StorageService,
     ClienteService,
-    ProdutoService
+    ProdutoService,
+    BucketService
   ]
 })
 export class AppModule {}

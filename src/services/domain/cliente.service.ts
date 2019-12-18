@@ -26,10 +26,10 @@ export class ClienteService {
       `${API_CONFIG.baseUrl}/clientes/email?value=${email}`);
   }
 
-  getImagemFormBucket(id : string): Observable<any> {
-    let url = `${API_CONFIG.bucketBaseUrl}/cp${id}.jpg`;
-    return this.http.get(url, {responseType : 'blob'})//seta o retorno como blob para n ter erro de parser
-  }
+  // getImagemFormBucket(id : string): Observable<any> {
+  //   let url = `${API_CONFIG.bucketBaseUrl}/cp${id}.jpg`;
+  //   return this.http.get(url, {responseType : 'blob'})//seta o retorno como blob para n ter erro de parser
+  // }
 
   insert(obj: ClienteDTO){
     return this.http.post(`${API_CONFIG.baseUrl}/clientes`,

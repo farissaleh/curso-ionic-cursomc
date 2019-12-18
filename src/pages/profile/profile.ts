@@ -1,3 +1,4 @@
+import { BucketService } from './../../services/bucket.service';
 import { ClienteService } from './../../services/domain/cliente.service';
 import { ClienteDTO } from './../../models/cliente.dto';
 import { StorageService } from './../../services/storage.service';
@@ -24,7 +25,8 @@ export class ProfilePage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public storage: StorageService,
-    public clienteService: ClienteService) {
+    public clienteService: ClienteService,
+    public bucketService: BucketService) {
   }
 
   ionViewDidLoad() {
@@ -47,9 +49,10 @@ export class ProfilePage {
   }
 
   getImageIfExixts(){
-   this.clienteService.getImagemFormBucket(this.cliente.id).subscribe(
+    let path = `/cp${this.cliente.id}.jpg`;
+   this.bucketService.findImage(path).subscribe(
      response => {
-        this.cliente.imageUrl = `${API_CONFIG.bucketBaseUrl}/cp${this.cliente.id}.jpg`;
+        this.cliente.imageUrl = `${API_CONFIG.bucketBaseUrl}${path}`;
      },
      error => {}
    );
